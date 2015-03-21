@@ -1,34 +1,35 @@
 package main
 
 import (
+	log "code.google.com/p/log4go"
+	"fmt"
+	"github.com/morpheyesh/datadust-server/cmd/server"
+	"github.com/tsuru/config"
+	"runtime"
+	"time"
+)
 
-  "github.com/astaxie/beego"
-  "github.com/morpheyesh/datadust_api/routers/things"
-  "log"
-  "strconv"
-  "time"
-  )
+func (dry bool) {
 
-func serverRun() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
 
-  log.Printf("DataDust Server  starting at %s", time.Now())
-	beegoHandler()
-	log.Println("DataDust Server killed |_|.")
+	version, _ := config.GetString("version")
 
+	log.Info("Starting dd Server %s...", version)
 
-}
+	server, err := server.NewServer()
+	if err != nil {
+		// sleep for the log to flush
+		time.Sleep(time.Second)
+		panic(err)
+	}
 
-func beegoHandler() {
+	if err := startProfiler(server); err != nil {
+		panic(err)
+	}
 
- beego.SessionOn = true
- beego.SetStaticPath("/static_source", "static_source")
- beego.DirectoryIndex = true
- datadust := new(inputData.inputdata)
- beego.Router("/devices/:id", datadust, "get:Get")
- port := "8079"
- http_port, _ := strconv.Atoi(port)
- beego.HttpPort = http_port
- beego.Run()
-
-
+	err = server.ListenAndServe()
+	if err != nil {
+		log.Error("ListenAndServe failed: ", err)
+	}
 }

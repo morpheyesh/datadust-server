@@ -3,7 +3,7 @@ package main
 
 import (
   "fmt"
-  "github.com/megamsys/"
+  "github.com/morpheyesh/libgo/cmd"
   "github.com/tsuru/config"
   "log"
   "os"
@@ -12,7 +12,7 @@ import (
 
 const (
   version = "0.1.0"
-  header = "DataDust API Server"
+  header = "dd API Server"
 
 )
 
@@ -20,7 +20,7 @@ const defaultConfigPath = "conf/dd.conf"
 
 func buildManager(name string) *cmd.Manager {
 	m := cmd.BuildBaseManager(name, version, header)
-	m.Register(&IOTStart{})
+	m.Register(&DDStart{})
 	return m
 }
 

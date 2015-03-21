@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/megamsys/libgo/cmd"
+	"github.com/morpheyesh/libgo/cmd"
 	"launchpad.net/gnuflag"
 	"fmt"
 )
@@ -11,7 +11,7 @@ type DDStart struct {
 }
 
 func (g *DDStart) Info() *cmd.Info {
-	desc := `starts the datadust API Server.`
+	desc := `starts the dd API Server.`
 	return &cmd.Info{
 		Name:    "start",
 		Usage:   `start`,
@@ -28,7 +28,7 @@ func (c *DDStart) Run(context *cmd.Context, client *cmd.Client) error {
 
 func (c *DDStart) Flags() *gnuflag.FlagSet {
 	if c.fs == nil {
-		c.fs = gnuflag.NewFlagSet("datadust", gnuflag.ExitOnError)
+		c.fs = gnuflag.NewFlagSet("dd", gnuflag.ExitOnError)
 	}
 	return c.fs
 }
