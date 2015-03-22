@@ -21,7 +21,7 @@ GOPATH  := $(GOPATH):$(shell pwd)/../../../../
 
 define HG_ERROR
 
-FATAL: you need mercurial (hg) to download megamd dependencies.
+FATAL: you need mercurial (hg) to download datadust-server dependencies.
        Check README.md for details
 
 
@@ -29,13 +29,12 @@ endef
 
 define GIT_ERROR
 
-FATAL: you need git to download megamd dependencies.
+FATAL: you need git to download datadust-server dependencies.
        Check README.md for details
 endef
 
 define BZR_ERROR
-
-FATAL: you need bazaar (bzr) to download megamd dependencies.
+FATAL: you need bazaar (bzr) to download datadust-server dependencies.
        Check README.md for details
 endef
 
@@ -43,7 +42,7 @@ endef
 
 all: check-path get test
 
-build: check-path get _go_test _megamd
+build: check-path get _go_test _datadust-server
 
 # It does not support GOPATH with multiple paths.
 check-path:
@@ -77,24 +76,24 @@ _go_test:
 	go clean $(GO_EXTRAFLAGS) ./...
 	go test $(GO_EXTRAFLAGS) ./...
 
-_megamd:
-	rm -f megamd
-	go build $(GO_EXTRAFLAGS) -o megamd ./cmd/megamd
+_datadust-server:
+	rm -f datadust-server
+	go build $(GO_EXTRAFLAGS) -o datadust ./cmd/datadust-server
 
 
-_megamdr:
-	sudo ./megamd start
-	rm -f megamd
+_datadust-serverr:
+	sudo ./datadust-server start
+	rm -f datadust-server
 
 _sh_tests:
-	@conf/trusty/megam/megam_test.sh
+	@conf/trusty/datadust/datadust_test.sh
 
-test: _go_test _megamd _megamdr
+test: _go_test _datadust-server _datadust-serverr
 
 _install_deadcode: git
 	go get $(GO_EXTRAFLAGS) github.com/remyoudompheng/go-misc/deadcode
 
 deadcode: _install_deadcode
-	@go list ./... | sed -e 's;github.com/megamd/megamd/;;' | xargs deadcode
+	@go list ./... | sed -e 's;github.com/datadust-server/datadust-server/;;' | xargs deadcode
 
 deadc0de: deadcode

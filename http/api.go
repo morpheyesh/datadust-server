@@ -1,13 +1,13 @@
 package http
 
 import (
-  log "code.google.com/p/log4go"
+  //log "code.google.com/p/log4go"
   "github.com/bmizerany/pat"
   "github.com/tsuru/config"
   "net"
-  libhttp "net/http"
-  "strconv"
-  "strings"
+  //libhttp "net/http"
+  //"strconv"
+  //"strings"
   "time"
 )
 
