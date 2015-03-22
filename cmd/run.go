@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/morpheyesh/libgo/cmd"
+	"github.com/morpheyesh/datadust-server/libs/cmd"
 	"launchpad.net/gnuflag"
 	"fmt"
 )

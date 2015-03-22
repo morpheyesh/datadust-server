@@ -3,7 +3,7 @@ package main
 
 import (
   "fmt"
-  "github.com/morpheyesh/libgo/cmd"
+  "github.com/morpheyesh/datadust-server/libs/cmd"
   "github.com/tsuru/config"
   "log"
   "os"
