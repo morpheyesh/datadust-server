@@ -82,8 +82,10 @@ _datadust-server:
 
 
 _datadust-serverr:
-	sudo ./datadust-server start
-	rm -f datadust-server
+	sudo ./datadust start
+	rm -f datadust
+
+
 
 _sh_tests:
 	@conf/trusty/datadust/datadust_test.sh

@@ -38,31 +38,31 @@
 			"Rev": "4894fe7efedeeef21891033e1cce3b23b9af7ad2"
 		},
 		{
-			"ImportPath": "github.com/megamsys/libgo/action",
+			"ImportPath": "github.com/morpheyesh/libgo/action",
 			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
 		},
 		{
-			"ImportPath": "github.com/megamsys/libgo/amqp",
+			"ImportPath": "github.com/morpheyesh/libgo/amqp",
+			"Rev": "24e41a327a8aef3b333f07440219699176fa3070"
+		},
+		{
+			"ImportPath": "github.com/morpheyesh/libgo/cmd",
 			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
 		},
 		{
-			"ImportPath": "github.com/megamsys/libgo/cmd",
+			"ImportPath": "github.com/morpheyesh/libgo/db",
 			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
 		},
 		{
-			"ImportPath": "github.com/megamsys/libgo/db",
+			"ImportPath": "github.com/morpheyesh/libgo/etcd",
 			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
 		},
 		{
-			"ImportPath": "github.com/megamsys/libgo/etcd",
+			"ImportPath": "github.com/morpheyesh/libgo/exec",
 			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
 		},
 		{
-			"ImportPath": "github.com/megamsys/libgo/exec",
-			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
-		},
-		{
-			"ImportPath": "github.com/megamsys/libgo/fs",
+			"ImportPath": "github.com/morpheyesh/libgo/fs",
 			"Rev": "8b53d904e89f2626f955424a72fd77eda2740b86"
 		},
 		{

@@ -2,11 +2,11 @@ package main
 
 import (
 	log "code.google.com/p/log4go"
-	"github.com/morpheyesh/datadust-server/cmd/server"
+	"github.com/morpheyesh/datadust-server/cmd/datadust-server/server"
 	"github.com/tsuru/config"
 	"runtime"
 	"time"
-	"fmt"
+	//"fmt"
 )
 
 func serverRun(dry bool) {
@@ -18,7 +18,6 @@ func serverRun(dry bool) {
 	log.Info("Starting dd Server %s...", version)
 
 	server, err := server.NewServer()
-	fmt.Println(server)
 	if err != nil {
 		// sleep for the log to flush
 		time.Sleep(time.Second)

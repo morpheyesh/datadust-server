@@ -5,18 +5,14 @@ package server
 	log "code.google.com/p/log4go"
 	//"encoding/json"
 	"github.com/morpheyesh/libgo/amqp"
-	//"github.com/morpheyesh/libgo/db"
-	//"github.com/morpheyesh/datadust-server/libs/etcd"
-	"github.com/morpheyesh/datadust-server/http"
-	//"github.com/morpheyesh/datadust-server/app"
-	//"github.com/morpheyesh/datadust-server/global"
-	"github.com/morpheyesh/datadust-server/cmd/server/queue"
-	//"github.com/tsuru/config"
-	//"time"
+
+	"github.com/morpheyesh/datadust-server/api/http"
+
+	"github.com/morpheyesh/datadust-server/cmd/datadust-server/server/queue"
+
 	"os"
 	"fmt"
-	//"net"
-	//"net/url"
+
 )
 
 type Server struct {
@@ -28,45 +24,55 @@ type Server struct {
 
 
 func NewServer() (*Server, error) {
+  log.Info("Starting New server")
 
   httpConn := http.NewHttpServer()
 
   return &Server{
     httpConn: httpConn,
-
   }, nil
 }
 
 func (self *Server) ListenAndServe() error {
   log.Info("Starting the admin interface on the port")
   var queues [1]string
-  queues[0] = "test"
+  queues[0] = "morpheyesh-laptop"
   self.queueChecker()
 
   for i := range queues {
     singleQ := queues[i]
     Qserver := queue.NewServer(singleQ)
+
     go Qserver.ListenAndServe()
   }
+  self.httpConn.ListenAndServe()
+
   return nil
  }
 
 
 func (self *Server) queueChecker() {
 
-  log.Info("Checking with RMQ")
+  log.Info("Dialing RabbitMQ")
   rmq, err := amqp.Factory()
+
+  log.Info("rmq-->  %v", rmq)
+
+
   if err != nil {
     log.Error("Something is terribly wrong..we failed to get the queue instance: %s", err)
 
   }
+  log.Info("Entered here for dial")
   connection, cerr := rmq.Dial()
-  log.Debug("connection %v", connection)
+  log.Info("connection-->  %v", connection)
 
    if cerr != nil {
      fmt.Fprintf(os.Stderr, "Error: %v \nPlease start RabbitMQ service\n", cerr)
      os.Exit(1)
    }
+   log.Info("Rabbitmq connected")
+
 }
 
 func (self *Server) Stop() {

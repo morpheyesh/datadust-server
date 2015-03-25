@@ -29,8 +29,12 @@ func (c *DDStart) Run(context *cmd.Context, client *cmd.Client) error {
 
 func (c *DDStart) Flags() *gnuflag.FlagSet {
 	if c.fs == nil {
-		c.fs = gnuflag.NewFlagSet("dd", gnuflag.ExitOnError)
+		c.fs = gnuflag.NewFlagSet("datadust", gnuflag.ExitOnError)
+		c.fs.BoolVar(&c.dry, "config", false, "config: the configuration file to use")
+		c.fs.BoolVar(&c.dry, "c", false, "config: the configuration file to use")
 		c.fs.BoolVar(&c.dry, "dry", false, "dry-run: does not start the datadust (for testing purpose)")
+		c.fs.BoolVar(&c.dry, "d", false, "dry-run: does not start the datadust (for testing purpose)")
+
 
 	}
 	return c.fs

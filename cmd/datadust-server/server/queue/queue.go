@@ -24,17 +24,22 @@ func NewServer(listenAddress string) *QueueServer {
 }
 
 func (self *QueueServer) ListenAndServe() {
+	log.Info("Entered ListenAndServe....")
 	factor, err := amqp.Factory()
+	log.Info("Established connection")
 	if err != nil {
 		log.Error("Failed to get the queue instance: %s", err)
 	}
 
 	pubsub, err := factor.Get(self.ListenAddress)
+	log.Info("PubSub")
+	fmt.Println(pubsub)
 	if err != nil {
 		log.Error("Failed to get the queue instance: %s", err)
 	}
-
+  log.Info("[x] Now Subscribing.")
 	msgChan, _ := pubsub.Sub()
+	log.Info("Printing subscription")
 	for msg := range msgChan {
 		log.Info("Alrighty! lets priint the data")
    fmt.Println(msg)
