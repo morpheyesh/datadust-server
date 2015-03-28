@@ -18,16 +18,16 @@ func serverRun(dry bool) {
 	log.Info("Starting dd Server %s...", version)
 
 	server, err := server.NewServer()
+	log.Info("Server started---> %v.", server)
 	if err != nil {
 		// sleep for the log to flush
 		time.Sleep(time.Second)
 		panic(err)
 	}
 
-	//if err := startProfiler(server); err != nil {
-		//panic(err)
-	//}
-
+	if err := startProfiler(server); err != nil {
+		panic(err)
+	}
 	err = server.ListenAndServe()
 	if err != nil {
 		log.Error("ListenAndServe failed: ", err)

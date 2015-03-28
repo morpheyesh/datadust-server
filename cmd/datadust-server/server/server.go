@@ -25,7 +25,6 @@ type Server struct {
 
 func NewServer() (*Server, error) {
   log.Info("Starting New server")
-
   httpConn := http.NewHttpServer()
 
   return &Server{
@@ -42,7 +41,7 @@ func (self *Server) ListenAndServe() error {
   for i := range queues {
     singleQ := queues[i]
     Qserver := queue.NewServer(singleQ)
-
+    fmt.Println(Qserver)
     go Qserver.ListenAndServe()
   }
   self.httpConn.ListenAndServe()

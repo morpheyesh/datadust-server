@@ -43,7 +43,7 @@
 		},
 		{
 			"ImportPath": "github.com/morpheyesh/libgo/amqp",
-			"Rev": "24e41a327a8aef3b333f07440219699176fa3070"
+			"Rev": "c78a8583e04649f75af8c6fb630f7d4778ad0abc"
 		},
 		{
 			"ImportPath": "github.com/morpheyesh/libgo/cmd",
